@@ -1,17 +1,23 @@
 <!DOCTYPE html>
-<html class="h-full bg-slate-50" lang="vi">
+<html class="scroll-smooth" lang="vi">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
-  <title>B2B OS - Customer-First Workspace</title>
+  <title>B2B OS - Hệ Điều Hành Bán Hàng & Vận Hành Khách Hàng Ưu Tiên Với AI</title>
+  <meta name="description" content="B2B OS - Customer-First Workspace giúp doanh nghiệp quản lý ngữ cảnh khách hàng, tự động tạo báo giá, proposal, hợp đồng và nghiên cứu thị trường chuẩn Price Book chỉ trong 30 giây."/>
   
+  <!-- Open Graph -->
+  <meta property="og:title" content="B2B OS - Customer-First Workspace"/>
+  <meta property="og:description" content="Tăng tốc bán hàng và vận hành khách hàng B2B với sức mạnh trí tuệ nhân tạo."/>
+  <meta property="og:type" content="website"/>
+
   <!-- Favicon SVG -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23059669'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='42' font-weight='900' fill='%23ffffff'>B2B</text></svg>">
   
   <!-- Inter Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN with Forms & Container Plugins -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -32,7 +38,7 @@
               800: '#065f46',
               900: '#064e3b'
             },
-            darknav: '#111827'
+            darknav: '#0b1120'
           },
           fontFamily: {
             sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
@@ -43,47 +49,14 @@
   </script>
 
   <style>
-    /* iOS safe areas and tap highlights */
-    body {
-      -webkit-tap-highlight-color: transparent;
-      padding-top: env(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-bottom);
-    }
-    .safe-bottom {
-      padding-bottom: calc(env(safe-area-inset-bottom) + 0.5rem);
+    /* Gradient Backgrounds & Glows */
+    .hero-glow {
+      background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.02) 60%, transparent 100%);
     }
 
-    /* Subtle custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #94a3b8;
-    }
-
-    /* Keyframe Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
+    .grid-pattern {
+      background-image: radial-gradient(rgba(148, 163, 184, 0.2) 1px, transparent 1px);
+      background-size: 24px 24px;
     }
 
     @keyframes pulseGlow {
@@ -91,842 +64,588 @@
         box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
       }
       50% {
-        box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
       }
-    }
-
-    @keyframes toastIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    .animate-fadeInUp {
-      animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .shimmer-active {
-      background: linear-gradient(90deg, #047857 0%, #059669 35%, #34d399 50%, #059669 65%, #047857 100%) !important;
-      background-size: 200% 100% !important;
-      animation: shimmer 1.8s infinite linear !important;
     }
 
     .pulse-glow {
       animation: pulseGlow 2.5s infinite;
     }
 
-    .interactive-btn {
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    .feature-card {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .interactive-btn:hover {
-      transform: translateY(-1px);
-    }
-    .interactive-btn:active {
-      transform: scale(0.97);
-    }
-
-    .sidebar-link {
-      transition: all 0.18s ease-in-out;
-      position: relative;
-    }
-    .sidebar-link::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%) scaleY(0);
-      width: 3px;
-      height: 60%;
-      background-color: #059669;
-      border-radius: 0 4px 4px 0;
-      transition: transform 0.2s ease;
-    }
-    .sidebar-link:hover::before {
-      transform: translateY(-50%) scaleY(1);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, ::before, ::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
     }
   </style>
 </head>
-<body class="h-full flex flex-col font-sans text-slate-800 antialiased overflow-hidden bg-[#fbfdfc]">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-emerald-100 selection:text-emerald-900">
 
-  <!-- BEGIN: TopHeader -->
-  <header class="h-14 bg-darknav text-white flex items-center justify-between px-4 z-30 shrink-0 border-b border-gray-800">
-    <!-- Brand identification and badge -->
-    <div class="flex items-center space-x-3">
-      <!-- Mobile Sidebar Toggle -->
-      <button id="mobileMenuBtn" class="md:hidden p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition" aria-label="Toggle menu">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-        </svg>
-      </button>
-
-      <div class="flex items-center gap-2">
-        <div class="w-7 h-7 rounded-lg bg-emerald-600 flex items-center justify-center font-black text-xs tracking-tighter text-white shadow-inner">
+  <!-- ==================== HEADER / NAVBAR ==================== -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center font-black text-sm tracking-tighter text-white shadow-sm group-hover:bg-emerald-700 transition-colors">
           B2B
         </div>
-        <div class="flex items-center gap-1.5 bg-[#064e3b]/80 border border-emerald-500/30 px-2 py-0.5 rounded-full text-[11px] font-medium text-emerald-300">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          BUILD
-        </div>
-        <span class="text-sm font-bold tracking-tight text-white ml-0.5 select-none">B2B OS</span>
-        <div class="hidden lg:flex items-center gap-1.5 ml-2 px-2.5 py-0.5 bg-slate-800/90 rounded text-[10px] tracking-wider text-slate-300 font-medium border border-slate-700/60 uppercase">
-          <span>WORK</span>
-          <span class="text-slate-500">•</span>
-          <span>BRAND</span>
-          <span class="text-slate-500">•</span>
-          <span>ONE WORKSPACE</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Center/Right Utility Items -->
-    <div class="flex items-center space-x-3 text-xs">
-      <!-- Search Bar -->
-      <div class="relative w-36 sm:w-48 md:w-56 group transition-all duration-300 focus-within:w-64">
-        <div class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-emerald-400 transition-colors">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-          </svg>
-        </div>
-        <input class="w-full bg-[#1e293b]/90 border border-slate-700 text-xs rounded-lg pl-8 pr-9 py-1.5 text-slate-200 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/30 transition-all shadow-inner" id="quickSearchInput" placeholder="Tìm nhanh (ấn ⌘K)" type="text"/>
-        <span class="absolute inset-y-0 right-0 pr-2 flex items-center text-[10px] text-slate-400 font-mono group-hover:text-emerald-300 transition-colors pointer-events-none">⌘K</span>
-      </div>
-
-      <!-- AI Usage Counter with Hover Tooltip -->
-      <div class="relative group hidden sm:flex items-center gap-2 bg-[#1e293b]/70 border border-slate-700/80 px-3 py-1 rounded-lg cursor-pointer hover:border-emerald-500/50 hover:bg-[#1e293b] transition-all">
-        <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-        </span>
-        <span class="text-slate-300 font-medium font-mono text-[11px]">0 <span class="text-slate-500">/</span> 6000</span>
-        <span class="text-slate-400 text-[11px]">lượt AI</span>
-        
-        <!-- Tooltip popup -->
-        <div class="absolute top-full mt-2 right-0 w-48 bg-slate-900 text-slate-200 text-[11px] p-2.5 rounded-lg shadow-xl border border-slate-700 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity z-50">
-          <div class="font-semibold text-white mb-1 flex items-center justify-between">
-            <span>Hạn ngạch AI</span>
-            <span class="text-emerald-400">Còn 6,000</span>
+        <div class="leading-tight">
+          <div class="flex items-center gap-1.5">
+            <span class="font-extrabold text-base tracking-tight text-slate-900">B2B OS</span>
+            <span class="text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold px-1.5 py-0.2 rounded">Workspace</span>
           </div>
-          <p class="text-[10px] text-slate-400 leading-normal">Chu kỳ làm mới vào ngày 01 hàng tháng. Gói BUILD không giới hạn tác vụ tự động hóa cơ bản.</p>
+          <span class="text-[10px] text-slate-400 font-medium block">Customer-First Platform</span>
         </div>
-      </div>
+      </a>
 
-      <!-- User Profile -->
-      <div class="flex items-center gap-2 pl-1 border-l border-slate-800">
-        <div class="w-7 h-7 rounded-full bg-emerald-600 text-white font-semibold flex items-center justify-center text-xs shadow-inner cursor-pointer hover:ring-2 hover:ring-emerald-400/50 transition-all">
-          M
-        </div>
-        <div class="hidden sm:block leading-tight text-left">
-          <div class="font-medium text-slate-200 text-xs">mhien075</div>
-          <div class="text-[10px] text-slate-400">ad299154-3</div>
-        </div>
-        <button class="text-slate-400 hover:text-rose-400 transition-colors ml-1 p-1 hover:bg-slate-800 rounded active:scale-95" title="Đăng xuất" onclick="showToast('Thông báo', 'Đã đăng xuất tài khoản an toàn.')">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
-  <!-- END: TopHeader -->
-
-  <!-- BEGIN: MainLayoutContainer -->
-  <div class="flex-1 flex overflow-hidden relative">
-
-    <!-- Mobile Drawer Backdrop -->
-    <div id="sidebarBackdrop" class="fixed inset-0 bg-slate-900/50 z-30 hidden md:hidden transition-opacity"></div>
-
-    <!-- BEGIN: LeftSidebar -->
-    <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 select-none transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-200 ease-in-out md:z-20">
-      <!-- Top Brand Logo Header -->
-      <div class="h-14 px-4 flex items-center border-b border-slate-100 gap-2">
-        <div class="w-8 h-8 rounded-lg bg-emerald-700 text-white font-extrabold flex items-center justify-center text-sm shadow-sm tracking-tight hover:scale-105 transition-transform cursor-pointer">
-          B2B
-        </div>
-        <span class="font-bold text-lg text-slate-900 tracking-tight">B2B OS</span>
-        <span class="ml-auto text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded border border-emerald-400/40 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 transition-colors cursor-default">
-          WORK OS
-        </span>
-        <!-- Close button for mobile -->
-        <button id="closeSidebarBtn" class="md:hidden ml-1 p-1 text-slate-400 hover:text-slate-700">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Navigation Menus (Scrollable) -->
-      <nav class="flex-1 overflow-y-auto px-3 py-3 space-y-5 text-[13px]">
-        <!-- Section: CHÍNH -->
-        <div>
-          <div class="px-2 mb-1.5 text-[11px] font-semibold text-slate-400 tracking-wider uppercase">Chính</div>
-          <div class="space-y-0.5">
-            <a class="sidebar-link flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all hover:pl-3" href="#home">
-              <svg class="w-4 h-4 text-slate-400 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-              </svg>
-              <span>Trang chủ</span>
-            </a>
-            <a class="sidebar-link flex items-center justify-between px-2.5 py-1.5 rounded-lg text-emerald-800 bg-emerald-50/80 font-medium border border-emerald-100 shadow-xs" href="#deals">
-              <div class="flex items-center gap-2.5">
-                <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                </svg>
-                <span>Khách hàng &amp; Deal</span>
-              </div>
-              <span class="text-[10px] font-semibold bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded shadow-xs">Active</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Section: THƯƠNG HIỆU & TĂNG TRƯỞNG -->
-        <div>
-          <div class="px-2 mb-1.5 text-[11px] font-semibold text-slate-400 tracking-wider uppercase">Thương hiệu &amp; Tăng trưởng</div>
-          <div class="space-y-0.5">
-            <a class="sidebar-link flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all hover:pl-3" href="#brand">
-              <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-              </svg>
-              <span>Thương hiệu</span>
-            </a>
-            <a class="sidebar-link flex items-center justify-between px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all hover:pl-3" href="#research">
-              <div class="flex items-center gap-2.5">
-                <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                </svg>
-                <span>Nghiên cứu thị trường</span>
-              </div>
-              <span class="text-[10px] font-medium bg-emerald-50 text-emerald-600 px-1.5 py-0.2 rounded border border-emerald-200 hover:scale-105 transition-transform">Beta</span>
-            </a>
-            <a class="sidebar-link flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all hover:pl-3" href="#growth">
-              <svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-              </svg>
-              <span>Nội dung tăng trưởng</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Section: KHÔNG GIAN LÀM VIỆC -->
-        <div>
-          <div class="px-2 mb-1.5 text-[11px] font-semibold text-slate-400 tracking-wider uppercase">Không gian làm việc</div>
-          <div class="space-y-0.5">
-            <a class="sidebar-link flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all hover:pl-3" href="#plugins">
-              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-              </svg>
-              <span>Thêm khả năng</span>
-            </a>
-            <a class="sidebar-link flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all hover:pl-3" href="#ai-works">
-              <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-              </svg>
-              <span>Cách AI làm việc</span>
-            </a>
-            <a class="sidebar-link flex items-center justify-between px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all hover:pl-3" href="#pricing">
-              <div class="flex items-center gap-2.5">
-                <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                </svg>
-                <span>Gói &amp; Thanh toán</span>
-              </div>
-              <span class="text-[10px] font-medium bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded border border-emerald-200">3 Gói</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Section: CẤU HÌNH -->
-        <div>
-          <div class="px-2 mb-1.5 text-[11px] font-semibold text-slate-400 tracking-wider uppercase">Cấu hình</div>
-          <div class="space-y-0.5">
-            <a class="sidebar-link flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all hover:pl-3" href="#price-book">
-              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-              </svg>
-              <span>Bảng giá (Price Book)</span>
-            </a>
-            <a class="sidebar-link flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all hover:pl-3" href="#standards">
-              <svg class="w-4 h-4 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-              </svg>
-              <span>Chuẩn thiết kế chương trình</span>
-            </a>
-            <a class="sidebar-link flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all hover:pl-3" href="#bots">
-              <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-              </svg>
-              <span>Telegram Bots</span>
-            </a>
-            <a class="sidebar-link flex items-center justify-between px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all hover:pl-3" href="#templates">
-              <div class="flex items-center gap-2.5">
-                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                </svg>
-                <span>Mẫu tài liệu</span>
-              </div>
-              <span class="text-[10px] font-semibold bg-emerald-50 text-emerald-700 px-1.5 py-0.2 rounded border border-emerald-200">HTML</span>
-            </a>
-          </div>
-        </div>
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+        <a href="#features" class="hover:text-emerald-600 transition-colors">Tính năng</a>
+        <a href="#preview" class="hover:text-emerald-600 transition-colors">Trải nghiệm</a>
+        <a href="#how-it-works" class="hover:text-emerald-600 transition-colors">Cách hoạt động</a>
+        <a href="#pricing" class="hover:text-emerald-600 transition-colors">Bảng giá</a>
+        <a href="#faq" class="hover:text-emerald-600 transition-colors">FAQ</a>
       </nav>
 
-      <!-- Sidebar Bottom Usage and Account Footer -->
-      <div class="p-3 border-t border-slate-200 bg-slate-50/60 space-y-2.5">
-        <!-- Usage Meter Card -->
-        <div class="bg-white border border-slate-200/80 rounded-xl p-2.5 shadow-xs hover:border-emerald-300 hover:shadow-sm transition-all group">
-          <div class="flex justify-between items-center text-xs mb-1.5">
-            <span class="text-slate-600 font-medium group-hover:text-slate-900 transition-colors">Lượt AI tháng này</span>
-            <span class="font-bold text-slate-800 text-[11px]">0 <span class="text-slate-400 font-normal">/ 6000</span></span>
-          </div>
-          <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden mb-2 relative">
-            <div class="bg-emerald-500 h-1.5 rounded-full w-[2%] pulse-glow transition-all duration-500"></div>
-          </div>
-          <div class="flex justify-between items-center text-[11px]">
-            <span class="font-semibold text-slate-700">Gói BUILD</span>
-            <a class="text-emerald-600 hover:text-emerald-700 font-medium hover:underline flex items-center gap-0.5" href="#pricing">Chi tiết gói</a>
-          </div>
-        </div>
-
-        <!-- Account Pill -->
-        <div class="flex items-center justify-between p-2 rounded-xl bg-white border border-slate-200/80 hover:bg-slate-50 hover:border-slate-300 cursor-pointer transition-all shadow-xs active:scale-[0.99]">
-          <div class="flex items-center gap-2">
-            <div class="w-7 h-7 rounded-full bg-slate-900 text-white font-bold flex items-center justify-center text-xs shadow-inner">
-              M
-            </div>
-            <div class="leading-tight">
-              <p class="text-xs font-semibold text-slate-800">mhien075</p>
-              <p class="text-[10px] text-slate-400">Chủ sở hữu</p>
-            </div>
-          </div>
-          <svg class="w-4 h-4 text-slate-400 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="https://github.com/Ciara1306/b2b-os-workspace" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-100 text-xs font-semibold border border-slate-200 transition">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
           </svg>
+          <span>GitHub</span>
+        </a>
+        
+        <a href="app.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-600/20 transition-all pulse-glow">
+          <span>Vào Workspace</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="relative pt-12 sm:pt-20 pb-16 sm:pb-24 overflow-hidden hero-glow border-b border-slate-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      
+      <!-- Announcement Tag -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold shadow-xs mb-6 hover:bg-emerald-100/80 transition-colors">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>Hệ điều hành B2B ưu tiên khách hàng thế hệ mới</span>
+        <span class="text-emerald-500 font-bold">→</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15] max-w-4xl mx-auto">
+        Tăng Tốc Vận Hành &amp; Chốt Deal B2B Với <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700">Sức Mạnh Của AI</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="mt-6 text-sm sm:text-base lg:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        B2B OS gom trọn lịch sử khách hàng, bảng giá chuẩn (Price Book), chính sách chiết khấu và kho tài liệu vào cùng <strong>một không gian làm việc duy nhất</strong>. Tạo báo giá, proposal và hợp đồng chỉ trong 30 giây.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+        <a href="app.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-lg shadow-emerald-600/30 hover:shadow-xl transition-all active:scale-95">
+          <span>Trải nghiệm Workspace ngay</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </a>
+        <a href="#preview" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm sm:text-base border border-slate-300 shadow-xs transition-all active:scale-95">
+          <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+          <span>Xem bản mô phỏng</span>
+        </a>
+      </div>
+
+      <!-- Trust & Key Metrics -->
+      <div class="mt-14 pt-10 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-left sm:text-center">
+        <div>
+          <p class="text-2xl sm:text-3xl font-extrabold text-emerald-600 font-mono">3.5x</p>
+          <p class="text-xs text-slate-500 font-medium mt-1">Tốc độ chốt deal &amp; báo giá</p>
+        </div>
+        <div>
+          <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-mono">80%</p>
+          <p class="text-xs text-slate-500 font-medium mt-1">Giảm thời gian soạn thảo văn bản</p>
+        </div>
+        <div>
+          <p class="text-2xl sm:text-3xl font-extrabold text-emerald-600 font-mono">100%</p>
+          <p class="text-xs text-slate-500 font-medium mt-1">Tuân thủ Price Book &amp; Policy</p>
+        </div>
+        <div>
+          <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-mono">&lt; 30s</p>
+          <p class="text-xs text-slate-500 font-medium mt-1">Thời gian tạo tài liệu AI</p>
         </div>
       </div>
-    </aside>
-    <!-- END: LeftSidebar -->
 
-    <!-- BEGIN: MainContentArea -->
-    <main class="flex-1 overflow-y-auto bg-gradient-to-b from-[#f7fbf9] to-[#ffffff] px-4 sm:px-6 lg:px-12 py-6 sm:py-8 flex flex-col justify-start pb-24 md:pb-8">
-      <div class="max-w-5xl w-full mx-auto space-y-5 sm:space-y-6">
-        
-        <!-- Top Badge -->
-        <div class="animate-fadeInUp" style="animation-delay: 50ms;">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold tracking-wide shadow-xs hover:bg-emerald-100/70 transition-colors cursor-default">
-            <svg class="w-3.5 h-3.5 text-emerald-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-            </svg>
-            <span>Customer-First Workspace • B2B OS</span>
+    </div>
+  </section>
+
+  <!-- ==================== PRODUCT PREVIEW SECTION ==================== -->
+  <section id="preview" class="py-16 sm:py-24 bg-white border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-2">Trực quan &amp; Đột phá</h2>
+        <p class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Một màn hình. Trọn vẹn ngữ cảnh khách hàng.</p>
+        <p class="text-sm sm:text-base text-slate-600 mt-3">Không cần nhảy qua 5 ứng dụng khác nhau. B2B OS kết nối từ danh bạ, bảng giá đến công cụ soạn thảo AI trên cùng một màn hình duy nhất.</p>
+      </div>
+
+      <!-- Browser Frame Mockup -->
+      <div class="relative rounded-2xl border border-slate-800 bg-[#0f172a] shadow-2xl overflow-hidden p-2 sm:p-4 max-w-5xl mx-auto">
+        <!-- Browser Top Controls -->
+        <div class="flex items-center justify-between pb-3 px-2 border-b border-slate-800 text-xs text-slate-400">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+            <span class="ml-2 font-mono text-[11px] text-slate-400 hidden sm:inline">b2b-os-workspace.workers.dev/app</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full font-semibold">Live System</span>
+            <a href="app.html" class="text-xs font-bold text-emerald-400 hover:text-emerald-300 underline">Mở toàn màn hình →</a>
           </div>
         </div>
 
-        <!-- Main Headline and Subtitle -->
-        <div class="space-y-2 animate-fadeInUp" style="animation-delay: 100ms;">
-          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
-            Hôm nay bạn muốn <span class="text-emerald-600 decoration-emerald-200 underline decoration-2 underline-offset-4 relative inline-block">làm gì cho khách hàng?</span>
-          </h1>
-          <p class="text-xs sm:text-sm lg:text-base text-slate-600 max-w-3xl leading-relaxed">
-            Chọn khách hàng trước, sau đó chọn tác vụ hoặc mô tả bằng ngôn ngữ tự nhiên. B2B OS giữ toàn bộ lịch sử, tài liệu và next action trong cùng một customer context.
+        <!-- Embedded Interactive Mockup Card -->
+        <div class="mt-3 bg-white rounded-xl p-4 sm:p-6 text-slate-900 shadow-inner">
+          
+          <!-- Mock Customer Header -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 bg-slate-50 border border-slate-200 rounded-xl mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-sm">
+                CÔ
+              </div>
+              <div>
+                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-1.5 py-0.2 rounded uppercase">Đang làm việc</span>
+                <h3 class="font-bold text-sm text-slate-900">Công ty TNHH Thương mại Dịch vụ SAINTTHAI</h3>
+                <p class="text-xs text-slate-500">Commercial • LH: 0397437251</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-1.5 text-xs">
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 font-medium text-slate-700">Đổi KH</span>
+              <span class="px-2.5 py-1 rounded-lg bg-emerald-600 font-semibold text-white">+ Tạo KH</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-900 font-semibold text-white">Lịch sử →</span>
+            </div>
+          </div>
+
+          <!-- Mock Prompt Box -->
+          <div class="border-2 border-emerald-300 rounded-xl p-4 space-y-3 bg-[#fbfdfc]">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-800">Chọn tác vụ hoặc mô tả yêu cầu thực thi:</span>
+              <span class="text-[11px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">SAINTTHAI Context</span>
+            </div>
+
+            <!-- Task Pills -->
+            <div class="flex flex-wrap gap-2 text-xs">
+              <span class="px-3 py-1.5 bg-slate-900 text-white font-semibold rounded-lg flex items-center gap-1">
+                <span>✓</span> Báo giá dịch vụ
+              </span>
+              <span class="px-3 py-1.5 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium">Proposal giải pháp</span>
+              <span class="px-3 py-1.5 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium">Hợp đồng pháp lý</span>
+              <span class="px-3 py-1.5 bg-slate-50 border border-slate-200 text-slate-600 rounded-lg font-medium">🔎 Nghiên cứu thị trường</span>
+            </div>
+
+            <!-- Mock Input -->
+            <div class="bg-white border border-slate-200 rounded-lg p-3 text-xs text-slate-700 leading-relaxed font-normal">
+              "Tạo báo giá cho Công ty TNHH Thương mại Dịch vụ SAINTTHAI dựa trên nhu cầu đã trao đổi và chính sách giá chuẩn công ty."
+              <div class="flex justify-between items-center mt-2 pt-2 border-t border-slate-100 text-[10px] text-slate-400">
+                <span class="text-emerald-600 font-medium">✓ Price Book &amp; Policy đã nạp tự động</span>
+                <span>Context: Tự động</span>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="flex justify-between items-center pt-2">
+              <span class="text-[11px] text-slate-400">Chính sách giá &amp; Brand voice nạp từ Workspace</span>
+              <a href="app.html" class="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm">
+                <span>Tạo với B2B OS</span>
+                <span>⚡</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== CORE FEATURES ==================== -->
+  <section id="features" class="py-16 sm:py-24 bg-slate-50 border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-2">Tính năng vượt trội</h2>
+        <p class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Xây dựng cho các đội ngũ B2B hiện đại</p>
+        <p class="text-sm sm:text-base text-slate-600 mt-3">Mọi công cụ bạn cần để tiếp cận, tư vấn, soạn thảo và chốt hợp đồng B2B chuẩn chỉ.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        
+        <!-- Feature 1 -->
+        <div class="feature-card bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-xs">
+          <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Customer-First Workspace</h3>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
+            Mỗi khách hàng sở hữu một không gian độc lập. B2B OS lưu trữ toàn bộ lịch sử trao đổi, tài liệu đã gửi, điều khoản riêng biệt để AI luôn hiểu rõ khách hàng mà không cần nhắc lại.
           </p>
         </div>
 
-        <!-- Selected Customer Card -->
-        <!-- BEGIN: CustomerCard -->
-        <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-emerald-300 transition-all duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fadeInUp hover:-translate-y-0.5" style="animation-delay: 150ms;">
-          <div class="flex items-center gap-3.5">
-            <div class="w-12 h-12 rounded-xl sm:rounded-full border border-emerald-200 bg-emerald-50/70 flex items-center justify-center text-emerald-800 font-bold text-sm shrink-0 shadow-inner group-hover:scale-105 transition-transform">
-              CÔ
-            </div>
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">Khách hàng hiện tại</span>
-              </div>
-              <h2 class="font-bold text-slate-900 text-sm sm:text-base leading-snug mt-0.5">
-                Công ty TNHH Thương mại Dịch vụ SAINTTHAI
-              </h2>
-              <div class="flex items-center gap-2 text-xs text-slate-500 mt-0.5">
-                <span class="font-medium text-slate-600">COMMERCIAL</span>
-                <span>•</span>
-                <span>Liên hệ: <span class="font-mono text-slate-700 font-medium">0397437251</span></span>
-              </div>
-            </div>
+        <!-- Feature 2 -->
+        <div class="feature-card bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-xs">
+          <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
           </div>
-          
-          <div class="grid grid-cols-3 sm:flex items-center gap-2 shrink-0">
-            <!-- Search Button -->
-            <button class="interactive-btn inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 hover:border-slate-400 shadow-xs" id="btnSelectCustomer">
-              <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-              </svg>
-              <span>Đổi KH</span>
-            </button>
-            <!-- New Customer Button -->
-            <button class="interactive-btn inline-flex items-center justify-center gap-1 px-3.5 py-2 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 hover:shadow-emerald-500/20 hover:shadow-md rounded-xl shadow-xs" id="btnNewCustomer">
-              <span class="text-sm font-bold leading-none">+</span>
-              <span>Tạo KH</span>
-            </button>
-            <!-- History Button -->
-            <button class="interactive-btn inline-flex items-center justify-center gap-1 px-3.5 py-2 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 hover:shadow-slate-900/20 hover:shadow-md rounded-xl shadow-xs group" id="btnViewHistory">
-              <span>Lịch sử</span>
-              <span class="ml-0.5 transition-transform group-hover:translate-x-0.5">→</span>
-            </button>
-          </div>
+          <h3 class="text-lg font-bold text-slate-900">Price Book &amp; Policy Tự Động</h3>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
+            Không còn nỗi lo nhân viên báo giá sai hoặc chiết khấu vượt quy định. Hệ thống tự động áp dụng khung giá chuẩn và chính sách công ty vào từng báo giá được tạo ra.
+          </p>
         </div>
-        <!-- END: CustomerCard -->
 
-        <!-- AI Action and Prompt Generator Container -->
-        <!-- BEGIN: ActionContainer -->
-        <div class="bg-white border-2 border-emerald-300/80 rounded-2xl p-4 sm:p-6 shadow-md relative space-y-5 sm:space-y-6 animate-fadeInUp transition-all duration-300 hover:border-emerald-400" style="animation-delay: 200ms;">
-          <!-- Box Header -->
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3 sm:pb-4">
-            <h3 class="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
-              <span>Chọn tác vụ hoặc nói thẳng việc cần hoàn thành</span>
-            </h3>
-            <span class="self-start sm:self-auto text-xs px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-medium truncate max-w-[200px] hover:bg-emerald-100 transition-colors cursor-default">
-              SAINTTHAI...
-            </span>
+        <!-- Feature 3 -->
+        <div class="feature-card bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-xs">
+          <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
           </div>
+          <h3 class="text-lg font-bold text-slate-900">Nghiên Cứu Thị Trường &amp; Đối Thủ</h3>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
+            Chỉ với 1 click, AI Agent phân tích ngành nghề của khách hàng, đối thủ cạnh tranh và cơ hội hợp tác kinh doanh để chuẩn bị luận điểm thuyết phục trước cuộc hẹn.
+          </p>
+        </div>
 
-          <!-- Section 1: LÀM VIỆC VỚI KHÁCH HÀNG -->
-          <div class="space-y-2">
-            <div class="text-[11px] font-bold text-slate-400 tracking-wider uppercase">Làm việc với khách hàng</div>
-            <div class="flex flex-wrap items-center gap-2" id="taskSelectorGroup">
-              <!-- Active Action Button (Báo giá) -->
-              <button class="task-btn interactive-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-semibold shadow-xs ring-1 ring-slate-900 transition-all" data-task="quote">
-                <svg class="w-3.5 h-3.5 text-slate-300" fill="currentColor" viewBox="0 0 20 20">
-                  <path clip-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 6a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2zm0 6a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2z" fill-rule="evenodd"></path>
-                </svg>
-                <span>Báo giá</span>
-              </button>
-              <!-- Proposal Action Button -->
-              <button class="task-btn interactive-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50 text-xs font-medium transition-all" data-task="proposal">
-                <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.5L19 7.5V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                </svg>
-                <span>Proposal</span>
-              </button>
-              <!-- Hợp đồng Action Button -->
-              <button class="task-btn interactive-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50 text-xs font-medium transition-all" data-task="contract">
-                <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                </svg>
-                <span>Hợp đồng</span>
-              </button>
+        <!-- Feature 4 -->
+        <div class="feature-card bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-xs">
+          <div class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-200 text-purple-600 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Nội Dung Tăng Trưởng Đa Kênh</h3>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
+            Lập kế hoạch tiếp cận qua Email cá nhân hóa, bài đăng LinkedIn B2B và kịch bản chốt đơn định kỳ phù hợp với tiếng nói thương hiệu (Brand Voice) của bạn.
+          </p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-card bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-xs">
+          <div class="w-12 h-12 rounded-xl bg-teal-50 border border-teal-200 text-teal-600 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Đa Nền Tảng Responsive</h3>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
+            Làm việc mượt mà từ máy tính văn phòng đến điện thoại khi đang di chuyển gặp khách. Giao diện tự động thích ứng với thanh Tabbar di động tiện lợi.
+          </p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-card bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-xs">
+          <div class="w-12 h-12 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Bảo Mật Edge &amp; Độc Quyền</h3>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
+            Dữ liệu khách hàng được bảo vệ trên hạ tầng Cloudflare toàn cầu, mã hóa an toàn với chuẩn HTTPS và tốc độ phản hồi tính bằng mili-giây.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== HOW IT WORKS ==================== -->
+  <section id="how-it-works" class="py-16 sm:py-24 bg-white border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-2">Quy trình đơn giản</h2>
+        <p class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">3 bước biến ý tưởng thành tài liệu B2B hoàn hảo</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+        
+        <!-- Step 1 -->
+        <div class="text-center p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+          <div class="w-12 h-12 rounded-full bg-slate-900 text-white font-extrabold text-lg flex items-center justify-center mx-auto mb-4">
+            1
+          </div>
+          <h3 class="text-base font-bold text-slate-900">Chọn Khách Hàng Mục Tiêu</h3>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+            Chọn khách hàng hiện có từ danh bạ hoặc tạo nhanh hồ sơ đối tác mới chỉ với tên công ty và số điện thoại.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="text-center p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+          <div class="w-12 h-12 rounded-full bg-emerald-600 text-white font-extrabold text-lg flex items-center justify-center mx-auto mb-4">
+            2
+          </div>
+          <h3 class="text-base font-bold text-slate-900">Ra Lệnh Bằng Ngôn Ngữ Tự Nhiên</h3>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+            Nhấn chọn tác vụ mẫu (Báo giá, Proposal, Hợp đồng) hoặc nhập yêu cầu thực thi. AI tự liên kết Price Book và chính sách.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="text-center p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+          <div class="w-12 h-12 rounded-full bg-slate-900 text-white font-extrabold text-lg flex items-center justify-center mx-auto mb-4">
+            3
+          </div>
+          <h3 class="text-base font-bold text-slate-900">Xuất Bản &amp; Chốt Hợp Đồng</h3>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+            B2B OS tạo bản thảo chuẩn định dạng chỉ sau vài giây. Lưu tự động vào lịch sử khách hàng và sẵn sàng gửi email.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PRICING SECTION ==================== -->
+  <section id="pricing" class="py-16 sm:py-24 bg-slate-50 border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-2">Bảng giá minh bạch</h2>
+        <p class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Lựa chọn gói phù hợp với quy mô doanh nghiệp</p>
+        <p class="text-sm sm:text-base text-slate-600 mt-3">Khởi đầu miễn phí, nâng cấp khi đội ngũ kinh doanh mở rộng.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
+        
+        <!-- Starter Plan -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-7 shadow-xs flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">STARTER</span>
+            <div class="mt-4 flex items-baseline">
+              <span class="text-3xl sm:text-4xl font-black text-slate-900">0₫</span>
+              <span class="text-xs text-slate-500 ml-1">/ tháng</span>
             </div>
-          </div>
-
-          <!-- Section 2: CÔNG CỤ DOANH NGHIỆP -->
-          <div class="space-y-2">
-            <div class="text-[11px] font-bold text-slate-400 tracking-wider uppercase">Công cụ doanh nghiệp</div>
-            <div class="flex flex-wrap items-center gap-2">
-              <button class="interactive-btn group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 text-xs font-medium transition-all shadow-xs" id="chipMarketResearch">
-                <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                </svg>
-                <span>🔎 Nghiên cứu thị trường</span>
-                <span class="text-slate-400 group-hover:translate-x-0.5 transition-transform ml-0.5">→</span>
-              </button>
-              <button class="interactive-btn group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 text-xs font-medium transition-all shadow-xs" id="chipGrowthContent">
-                <svg class="w-3.5 h-3.5 text-amber-500 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                </svg>
-                <span>✨ Nội dung tăng trưởng</span>
-                <span class="text-slate-400 group-hover:translate-x-0.5 transition-transform ml-0.5">→</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Section 3: Natural Language Prompt Area -->
-          <div class="relative pt-1 rounded-xl p-3 border border-slate-200/90 focus-within:border-emerald-500 focus-within:ring-2 focus-within:ring-emerald-400/20 bg-slate-50/40 focus-within:bg-white transition-all duration-200">
-            <label class="sr-only" for="ai-instruction">Nội dung lệnh AI</label>
-            <textarea class="w-full text-slate-700 text-xs sm:text-sm placeholder-slate-400 border-0 focus:ring-0 p-0 leading-relaxed resize-y bg-transparent outline-none transition-opacity duration-200" id="ai-instruction" placeholder="Nhập yêu cầu thực hiện công việc..." rows="3">Tạo báo giá cho Công ty TNHH Thương mại Dịch vụ SAINTTHAI dựa trên nhu cầu đã trao đổi và chính sách giá chuẩn công ty.</textarea>
+            <p class="text-xs text-slate-600 mt-2">Dành cho cá nhân kinh doanh hoặc startup nhỏ bắt đầu số hóa.</p>
             
-            <div class="flex items-center justify-between pt-2 mt-2 border-t border-slate-200/60 text-[11px] text-slate-500">
-              <span class="flex items-center gap-1 text-[10px] text-slate-400">
-                <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-                </svg>
-                Price Book &amp; Policy đã nạp
-              </span>
-              <span class="text-[10px] text-slate-400">Context: Tự động</span>
-            </div>
+            <ul class="mt-6 space-y-3 text-xs text-slate-700">
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> 500 lượt AI / tháng
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> Quản lý 50 khách hàng
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> Mẫu báo giá chuẩn HTML
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> Hỗ trợ cộng đồng
+              </li>
+            </ul>
           </div>
 
-          <!-- Bottom Prompt Actions & Helper note -->
-          <div class="pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <p class="text-xs text-slate-400 font-normal flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-              </svg>
-              Price Book, Brand Voice và policy được lấy tự động từ Workspace.
-            </p>
-            <button class="interactive-btn relative overflow-hidden inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md hover:shadow-emerald-600/30 hover:shadow-lg transition-all active:scale-[0.98]" id="generateBtn">
-              <svg class="w-4 h-4 text-emerald-200 transition-transform duration-300" fill="none" id="generateIcon" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-              </svg>
-              <!-- Spinner Icon (hidden by default) -->
-              <svg class="hidden w-4 h-4 text-white animate-spin" fill="none" id="generateSpinner" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
-              </svg>
-              <span id="generateBtnText">Tạo với B2B OS</span>
-            </button>
-          </div>
-        </div>
-        <!-- END: ActionContainer -->
-
-        <!-- Quick Stats & Widgets Section -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-          <!-- Quota Monitor -->
-          <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-xs">
-            <div class="flex items-center justify-between text-xs text-slate-500 mb-1.5">
-              <span class="font-medium">Lượt AI tháng này</span>
-              <span class="font-bold text-slate-700">0 / 6,000</span>
-            </div>
-            <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
-              <div class="bg-emerald-500 h-1.5 rounded-full" style="width: 2%"></div>
-            </div>
-            <div class="flex items-center justify-between mt-2.5 text-[11px]">
-              <span class="text-slate-400 font-medium">Gói BUILD</span>
-              <a class="text-emerald-600 hover:text-emerald-700 font-medium" href="#pricing">Chi tiết gói →</a>
-            </div>
-          </div>
-
-          <!-- Quick Library Config -->
-          <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-xs flex flex-col justify-between">
-            <div>
-              <span class="text-[10px] font-bold text-emerald-600 uppercase tracking-wider block">Cấu hình nhanh</span>
-              <span class="text-xs font-semibold text-slate-800 line-clamp-1 mt-0.5">Bảng giá &amp; Kịch bản bán hàng</span>
-            </div>
-            <div class="flex items-center justify-between text-[11px] text-slate-500 mt-2.5">
-              <span>Price Book</span>
-              <span class="text-xs font-bold text-emerald-600">Active</span>
-            </div>
-          </div>
-        </section>
-
-      </div>
-    </main>
-    <!-- END: MainContentArea -->
-
-  </div>
-  <!-- END: MainLayoutContainer -->
-
-  <!-- BEGIN: MobileBottomNavigation -->
-  <nav class="md:hidden fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-slate-200 z-30 safe-bottom">
-    <div class="max-w-md mx-auto grid grid-cols-5 h-14">
-      <button class="flex flex-col items-center justify-center text-slate-500 hover:text-emerald-600 transition" type="button" onclick="showToast('Điều hướng', 'Đang ở Trang chủ')">
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-        </svg>
-        <span class="text-[10px] font-medium">Trang chủ</span>
-      </button>
-
-      <button class="flex flex-col items-center justify-center text-emerald-600 relative" type="button">
-        <span class="absolute top-1 right-3.5 w-1.5 h-1.5 bg-emerald-500 rounded-full ring-2 ring-white"></span>
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-        </svg>
-        <span class="text-[10px] font-bold">Khách hàng</span>
-      </button>
-
-      <button class="flex flex-col items-center justify-center text-slate-500 hover:text-emerald-600 transition" type="button" onclick="showToast('Thương hiệu', 'Đang mở mục Thương hiệu')">
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-        </svg>
-        <span class="text-[10px] font-medium">Thương hiệu</span>
-      </button>
-
-      <button class="flex flex-col items-center justify-center text-slate-500 hover:text-emerald-600 transition" type="button" onclick="document.getElementById('chipMarketResearch').click()">
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-        </svg>
-        <span class="text-[10px] font-medium">Nghiên cứu</span>
-      </button>
-
-      <button class="flex flex-col items-center justify-center text-slate-500 hover:text-emerald-600 transition" type="button" id="mobileMenuTabBtn">
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-        </svg>
-        <span class="text-[10px] font-medium">Cấu hình</span>
-      </button>
-    </div>
-  </nav>
-  <!-- END: MobileBottomNavigation -->
-
-  <!-- Interactive Toast Notification Container -->
-  <div class="fixed bottom-20 md:bottom-6 right-4 sm:right-6 max-w-sm bg-slate-900 border border-emerald-500/50 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-start gap-3 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300 z-50" id="toastNotification">
-    <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-      </svg>
-    </div>
-    <div class="flex-1 text-xs">
-      <p class="font-semibold text-emerald-400" id="toastTitle">Thành công!</p>
-      <p class="text-slate-300 mt-0.5" id="toastMessage">Đã hoàn thành tác vụ!</p>
-    </div>
-    <button class="text-slate-400 hover:text-white p-0.5" id="toastCloseBtn">
-      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-      </svg>
-    </button>
-  </div>
-
-  <!-- Modal Dialog Simulation for History / Selection -->
-  <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4" id="modalOverlay">
-    <div class="bg-white rounded-2xl max-w-md w-full p-5 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="modalContent">
-      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-        <h4 class="font-bold text-slate-900 text-sm" id="modalHeaderTitle">Lịch sử tác vụ khách hàng</h4>
-        <button class="text-slate-400 hover:text-slate-700 p-1 rounded-lg hover:bg-slate-100 transition-colors" id="modalCloseBtn">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-          </svg>
-        </button>
-      </div>
-
-      <div class="py-4 space-y-3" id="modalBodyContent">
-        <div class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100 hover:bg-slate-100/70 transition cursor-pointer">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 shrink-0"></span>
-          <div class="text-xs">
-            <p class="font-semibold text-slate-800">Báo giá dịch vụ trọn gói Q4/2026</p>
-            <p class="text-slate-500 text-[11px]">Hôm nay lúc 14:20 • Trạng thái: Đã gửi qua Email</p>
-          </div>
+          <a href="app.html" class="mt-8 block text-center py-2.5 px-4 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs hover:bg-slate-50 transition">
+            Dùng thử miễn phí
+          </a>
         </div>
 
-        <div class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100 hover:bg-slate-100/70 transition cursor-pointer">
-          <span class="w-2 h-2 rounded-full bg-blue-500 mt-1.5 shrink-0"></span>
-          <div class="text-xs">
-            <p class="font-semibold text-slate-800">Proposal giải pháp Brand Growth</p>
-            <p class="text-slate-500 text-[11px]">28/09/2026 • Đã duyệt bởi khách hàng</p>
+        <!-- Build Plan (Recommended) -->
+        <div class="bg-white border-2 border-emerald-500 rounded-2xl p-7 shadow-xl flex flex-col justify-between relative transform md:-translate-y-2">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-[11px] font-bold px-3 py-0.5 rounded-full tracking-wider uppercase shadow-sm">
+            Gói Được Khuyên Dùng
           </div>
+
+          <div>
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">BUILD</span>
+              <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Active Plan</span>
+            </div>
+            <div class="mt-4 flex items-baseline">
+              <span class="text-3xl sm:text-4xl font-black text-slate-900">499.000₫</span>
+              <span class="text-xs text-slate-500 ml-1">/ tháng</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-2">Dành cho đội ngũ kinh doanh chuyên nghiệp cần tự động hóa toàn diện.</p>
+            
+            <ul class="mt-6 space-y-3 text-xs text-slate-700">
+              <li class="flex items-center gap-2 font-medium">
+                <span class="text-emerald-600 font-bold">✓</span> <strong>6,000 lượt AI</strong> / tháng
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> <strong>Không giới hạn</strong> số lượng khách hàng
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> Nạp Price Book &amp; Policy tự động
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> Công cụ Nghiên cứu thị trường AI
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> Phím tắt tìm kiếm nhanh ⌘K
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> Hỗ trợ ưu tiên 24/7
+              </li>
+            </ul>
+          </div>
+
+          <a href="app.html" class="mt-8 block text-center py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md shadow-emerald-600/20 transition active:scale-95">
+            Bắt đầu với Gói BUILD
+          </a>
         </div>
 
-        <div class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100 hover:bg-slate-100/70 transition cursor-pointer">
-          <span class="w-2 h-2 rounded-full bg-purple-500 mt-1.5 shrink-0"></span>
-          <div class="text-xs">
-            <p class="font-semibold text-slate-800">Khảo sát &amp; Nghiên cứu đối thủ ngành B2B Commercial</p>
-            <p class="text-slate-500 text-[11px]">25/09/2026 • Hoàn tất bởi AI Agent</p>
+        <!-- Scale Enterprise Plan -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-7 shadow-xs flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">ENTERPRISE</span>
+            <div class="mt-4 flex items-baseline">
+              <span class="text-3xl sm:text-4xl font-black text-slate-900">Liên hệ</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-2">Dành cho tập đoàn, tùy biến sâu theo quy trình ERP/CRM nội bộ.</p>
+            
+            <ul class="mt-6 space-y-3 text-xs text-slate-700">
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> Không giới hạn lượt AI
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> Tích hợp API ERP, CRM nội bộ
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> Triển khai Private Cloud riêng
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> Cam kết SLA 99.9%
+              </li>
+            </ul>
           </div>
+
+          <a href="https://github.com/Ciara1306/b2b-os-workspace" target="_blank" rel="noopener noreferrer" class="mt-8 block text-center py-2.5 px-4 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs hover:bg-slate-50 transition">
+            Liên hệ tư vấn
+          </a>
         </div>
+
       </div>
 
-      <div class="pt-3 border-t border-slate-100 flex justify-end">
-        <button class="px-4 py-1.5 rounded-xl bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 transition-colors" id="modalActionBtn">
-          Đóng
-        </button>
-      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Interactive Logic Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // 1. Task Selector Pill Switching
-      const taskButtons = document.querySelectorAll('.task-btn');
-      const textarea = document.getElementById('ai-instruction');
+  <!-- ==================== FAQ ACCORDION ==================== -->
+  <section id="faq" class="py-16 sm:py-24 bg-white border-b border-slate-200/80">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      const taskPresets = {
-        quote: "Tạo báo giá cho Công ty TNHH Thương mại Dịch vụ SAINTTHAI dựa trên nhu cầu đã trao đổi và chính sách giá chuẩn công ty.",
-        proposal: "Xây dựng đề xuất giải pháp (Proposal) tổng thể cho SAINTTHAI, nhấn mạnh cam kết KPI và tối ưu hoá chi phí vận hành B2B.",
-        contract: "Soạn thảo hợp đồng hợp tác dịch vụ tiêu chuẩn với Công ty TNHH Thương mại Dịch vụ SAINTTHAI theo điều khoản thanh toán 2 đợt."
-      };
+      <div class="text-center mb-12">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-2">Giải đáp thắc mắc</h2>
+        <p class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Câu hỏi thường gặp về B2B OS</p>
+      </div>
 
-      taskButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          taskButtons.forEach(b => {
-            b.className = "task-btn interactive-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50 text-xs font-medium transition-all";
-            const icon = b.querySelector('svg');
-            if (icon) icon.className = "w-3.5 h-3.5 text-slate-500";
-          });
+      <div class="space-y-4">
+        
+        <details class="group bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer" open>
+          <summary class="flex items-center justify-between font-bold text-sm sm:text-base text-slate-900">
+            <span>B2B OS khác gì so với dùng ChatGPT hay chatbot thông thường?</span>
+            <span class="ml-4 transition-transform group-open:rotate-180 text-emerald-600">▼</span>
+          </summary>
+          <p class="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Chatbot thông thường không lưu giữ hồ sơ riêng từng khách hàng và không biết bảng giá chuẩn của công ty bạn. B2B OS được thiết kế chuyên biệt cho B2B: lưu ngữ cảnh khách hàng riêng biệt, tự động nạp Price Book và chuẩn chính sách chiết khấu của công ty để văn bản tạo ra có thể dùng được ngay mà không cần sửa chữa nhiều.
+          </p>
+        </details>
 
-          btn.className = "task-btn interactive-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-semibold shadow-xs ring-1 ring-slate-900 transition-all";
-          const activeIcon = btn.querySelector('svg');
-          if (activeIcon) activeIcon.className = "w-3.5 h-3.5 text-slate-300";
+        <details class="group bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+          <summary class="flex items-center justify-between font-bold text-sm sm:text-base text-slate-900">
+            <span>Dữ liệu khách hàng của tôi có được bảo mật không?</span>
+            <span class="ml-4 transition-transform group-open:rotate-180 text-emerald-600">▼</span>
+          </summary>
+          <p class="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Dữ liệu của bạn hoàn toàn bảo mật. B2B OS chạy trên kiến trúc Cloudflare Edge toàn cầu, không chia sẻ dữ liệu kinh doanh của bạn cho bên thứ ba và cam kết an toàn thông tin tối đa.
+          </p>
+        </details>
 
-          const taskType = btn.getAttribute('data-task');
-          textarea.style.opacity = '0.3';
-          setTimeout(() => {
-            textarea.value = taskPresets[taskType] || '';
-            textarea.style.opacity = '1';
-          }, 150);
-        });
-      });
+        <details class="group bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+          <summary class="flex items-center justify-between font-bold text-sm sm:text-base text-slate-900">
+            <span>Tôi có thể tùy biến bảng giá và kịch bản riêng của doanh nghiệp không?</span>
+            <span class="ml-4 transition-transform group-open:rotate-180 text-emerald-600">▼</span>
+          </summary>
+          <p class="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Có! Mục "Cấu hình nhanh - Bảng giá (Price Book)" cho phép bạn nạp bảng giá sản phẩm, dịch vụ và chính sách chiết khấu của riêng bạn để AI luôn áp dụng chuẩn xác nhất.
+          </p>
+        </details>
 
-      // 2. Enterprise Tool Chips Clickable Presets
-      const chipMarket = document.getElementById('chipMarketResearch');
-      const chipGrowth = document.getElementById('chipGrowthContent');
+        <details class="group bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+          <summary class="flex items-center justify-between font-bold text-sm sm:text-base text-slate-900">
+            <span>Hệ thống có hoạt động tốt trên điện thoại không?</span>
+            <span class="ml-4 transition-transform group-open:rotate-180 text-emerald-600">▼</span>
+          </summary>
+          <p class="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            B2B OS được thiết kế chuẩn Responsive Native. Khi truy cập trên điện thoại, giao diện sẽ tự chuyển sang thanh điều hướng Tabbar dưới đáy và Drawer Menu như một ứng dụng cài đặt trên máy.
+          </p>
+        </details>
 
-      if (chipMarket) {
-        chipMarket.addEventListener('click', () => {
-          chipMarket.classList.add('ring-2', 'ring-emerald-400');
-          setTimeout(() => chipMarket.classList.remove('ring-2', 'ring-emerald-400'), 500);
-          textarea.style.opacity = '0.3';
-          setTimeout(() => {
-            textarea.value = "Nghiên cứu thị trường và phân tích cơ hội mở rộng tệp khách hàng tiềm năng cho SAINTTHAI trong ngành bán buôn & dịch vụ thương mại.";
-            textarea.style.opacity = '1';
-            showToast("Đã nạp mẫu: Nghiên cứu thị trường", "Prompt đã sẵn sàng để tạo báo cáo chi tiết.");
-          }, 150);
-        });
-      }
+      </div>
 
-      if (chipGrowth) {
-        chipGrowth.addEventListener('click', () => {
-          chipGrowth.classList.add('ring-2', 'ring-amber-400');
-          setTimeout(() => chipGrowth.classList.remove('ring-2', 'ring-amber-400'), 500);
-          textarea.style.opacity = '0.3';
-          setTimeout(() => {
-            textarea.value = "Lên kế hoạch nội dung tăng trưởng B2B (LinkedIn, Email Outreach và tài liệu bán hàng) định kỳ cho SAINTTHAI.";
-            textarea.style.opacity = '1';
-            showToast("Đã nạp mẫu: Nội dung tăng trưởng", "Gợi ý chiến lược nội dung đã được cập nhật.");
-          }, 150);
-        });
-      }
+    </div>
+  </section>
 
-      // 3. Primary CTA AI Generation Button State
-      const generateBtn = document.getElementById('generateBtn');
-      const generateBtnText = document.getElementById('generateBtnText');
-      const generateIcon = document.getElementById('generateIcon');
-      const generateSpinner = document.getElementById('generateSpinner');
-      let isProcessing = false;
+  <!-- ==================== FINAL CTA BANNER ==================== -->
+  <section class="py-16 sm:py-20 bg-darknav text-white relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-800 text-emerald-400 text-xs font-medium mb-4">
+        <span>B2B OS • Ready for Deployment</span>
+      </div>
+      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">Sẵn Sàng Nâng Tầm Năng Suất Bán Hàng Của Đội Ngũ?</h2>
+      <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl mx-auto">
+        Trải nghiệm không gian làm việc ưu tiên khách hàng đầu tiên ngay trên trình duyệt của bạn. Miễn phí bắt đầu, không cần thẻ tín dụng.
+      </p>
 
-      if (generateBtn) {
-        generateBtn.addEventListener('click', () => {
-          if (isProcessing) return;
-          isProcessing = true;
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="app.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-extrabold text-sm sm:text-base shadow-lg transition-all active:scale-95">
+          <span>Mở Không Gian Làm Việc Ngay</span>
+          <span>→</span>
+        </a>
+        <a href="https://github.com/Ciara1306/b2b-os-workspace" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm border border-slate-700 transition">
+          <span>Khám phá kho mã nguồn</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-          generateBtn.disabled = true;
-          generateBtn.classList.add('shimmer-active', 'cursor-wait');
-          generateIcon.classList.add('hidden');
-          generateSpinner.classList.remove('hidden');
-          generateBtnText.textContent = "Đang xử lý với AI...";
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-white border-t border-slate-200 py-10 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded-lg bg-emerald-600 flex items-center justify-center font-black text-xs text-white">
+          B2B
+        </div>
+        <span class="font-bold text-slate-800">B2B OS Workspace</span>
+        <span>•</span>
+        <span>© 2026 Toàn bộ bản quyền được bảo lưu.</span>
+      </div>
 
-          setTimeout(() => {
-            generateBtn.classList.remove('shimmer-active', 'cursor-wait');
-            generateSpinner.classList.add('hidden');
-            generateIcon.classList.remove('hidden');
-            generateBtnText.textContent = "Tạo với B2B OS";
-            generateBtn.disabled = false;
-            isProcessing = false;
+      <div class="flex items-center gap-6">
+        <a href="app.html" class="hover:text-emerald-600 transition">Không gian làm việc</a>
+        <a href="#features" class="hover:text-emerald-600 transition">Tính năng</a>
+        <a href="#pricing" class="hover:text-emerald-600 transition">Bảng giá</a>
+        <a href="https://github.com/Ciara1306/b2b-os-workspace" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 transition">GitHub Repo</a>
+      </div>
+    </div>
+  </footer>
 
-            showToast("Đã hoàn thành!", "Đã tạo thành công bản thảo cho Công ty SAINTTHAI!");
-          }, 1600);
-        });
-      }
-
-      // 4. Toast helper function
-      const toast = document.getElementById('toastNotification');
-      const toastTitle = document.getElementById('toastTitle');
-      const toastMessage = document.getElementById('toastMessage');
-      const toastCloseBtn = document.getElementById('toastCloseBtn');
-      let toastTimeout;
-
-      window.showToast = function(title, message) {
-        if (!toast) return;
-        if (toastTimeout) clearTimeout(toastTimeout);
-        toastTitle.textContent = title;
-        toastMessage.textContent = message;
-        toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
-        toast.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
-
-        toastTimeout = setTimeout(() => {
-          closeToast();
-        }, 4000);
-      };
-
-      function closeToast() {
-        if (!toast) return;
-        toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
-        toast.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
-      }
-
-      if (toastCloseBtn) toastCloseBtn.addEventListener('click', closeToast);
-
-      // 5. Customer History & Selection Modals
-      const modalOverlay = document.getElementById('modalOverlay');
-      const modalContent = document.getElementById('modalContent');
-      const modalCloseBtn = document.getElementById('modalCloseBtn');
-      const modalActionBtn = document.getElementById('modalActionBtn');
-      const modalHeaderTitle = document.getElementById('modalHeaderTitle');
-      const btnViewHistory = document.getElementById('btnViewHistory');
-      const btnSelectCustomer = document.getElementById('btnSelectCustomer');
-      const btnNewCustomer = document.getElementById('btnNewCustomer');
-
-      function openModal(title) {
-        if (!modalOverlay) return;
-        modalHeaderTitle.textContent = title;
-        modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
-        modalOverlay.classList.add('opacity-100', 'pointer-events-auto');
-        modalContent.classList.remove('scale-95');
-        modalContent.classList.add('scale-100');
-      }
-
-      function closeModal() {
-        if (!modalOverlay) return;
-        modalOverlay.classList.remove('opacity-100', 'pointer-events-auto');
-        modalOverlay.classList.add('opacity-0', 'pointer-events-none');
-        modalContent.classList.remove('scale-100');
-        modalContent.classList.add('scale-95');
-      }
-
-      if (btnViewHistory) btnViewHistory.addEventListener('click', () => openModal("Lịch sử tương tác SAINTTHAI"));
-      if (btnSelectCustomer) btnSelectCustomer.addEventListener('click', () => openModal("Chọn khách hàng từ danh bạ B2B"));
-      if (btnNewCustomer) btnNewCustomer.addEventListener('click', () => openModal("Tạo mới hồ sơ khách hàng B2B"));
-      
-      if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
-      if (modalActionBtn) modalActionBtn.addEventListener('click', closeModal);
-      if (modalOverlay) {
-        modalOverlay.addEventListener('click', (e) => {
-          if (e.target === modalOverlay) closeModal();
-        });
-      }
-
-      // 6. Mobile Sidebar Toggle
-      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-      const mobileMenuTabBtn = document.getElementById('mobileMenuTabBtn');
-      const closeSidebarBtn = document.getElementById('closeSidebarBtn');
-      const sidebar = document.getElementById('sidebar');
-      const sidebarBackdrop = document.getElementById('sidebarBackdrop');
-
-      function toggleSidebar(open) {
-        if (open) {
-          sidebar.classList.remove('-translate-x-full');
-          sidebarBackdrop.classList.remove('hidden');
-        } else {
-          sidebar.classList.add('-translate-x-full');
-          sidebarBackdrop.classList.add('hidden');
-        }
-      }
-
-      if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => toggleSidebar(true));
-      if (mobileMenuTabBtn) mobileMenuTabBtn.addEventListener('click', () => toggleSidebar(true));
-      if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', () => toggleSidebar(false));
-      if (sidebarBackdrop) sidebarBackdrop.addEventListener('click', () => toggleSidebar(false));
-
-      // 7. Keyboard Shortcut (⌘K / Ctrl+K) Focus Search
-      window.addEventListener('keydown', (e) => {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-          e.preventDefault();
-          const searchInput = document.getElementById('quickSearchInput');
-          if (searchInput) {
-            searchInput.focus();
-            searchInput.select();
-          }
-        }
-      });
-    });
-  </script>
 </body>
 </html>
