@@ -5,3 +5,7 @@ Thumbs.db
 .env
 dist/
 .wrangler/
+
+.dev.vars*
+!.dev.vars.example
+!.env.example
